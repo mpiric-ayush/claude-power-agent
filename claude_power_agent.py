@@ -7,7 +7,15 @@ import uuid
 from datetime import datetime
 
 import streamlit as st
-from anthropic import Anthropic
+
+try:
+    from anthropic import Anthropic
+except ModuleNotFoundError as exc:
+    raise ModuleNotFoundError(
+        "Missing dependency `anthropic`. Install app dependencies with "
+        "`pip install -r requirements.txt` before running or deploy with a platform "
+        "that installs Python requirements."
+    ) from exc
 
 try:
     from pypdf import PdfReader
